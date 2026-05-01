@@ -1,0 +1,1 @@
+{"_runtime":3,"rows":10000,"columns":["UDI","Product ID","Type","Air temperature [K]","Process temperature [K]","Rotational speed [rpm]","Torque [Nm]","Tool wear [min]","Target","Failure Type"],"_wandb":{"runtime":3}}

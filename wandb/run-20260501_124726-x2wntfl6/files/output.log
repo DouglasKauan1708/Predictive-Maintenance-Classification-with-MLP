@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\pipelines\run_pipeline.py", line 54, in <module>
+    df_clean, X, y = data_cleaning(df_raw)
+                     ~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\src\data_cleaning.py", line 22, in data_cleaning
+    clean_df = df.drop(columns=["Type_L", "Type_M"]) # Unrelevant columns
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\pandas\core\frame.py", line 6288, in drop
+    return super().drop(
+           ~~~~~~~~~~~~^
+        labels=labels,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        errors=errors,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\pandas\core\generic.py", line 4644, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\pandas\core\generic.py", line 4686, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 7268, in drop
+    raise KeyError(f"{labels[mask].tolist()} not found in axis")
+KeyError: "['Type_L', 'Type_M'] not found in axis"
