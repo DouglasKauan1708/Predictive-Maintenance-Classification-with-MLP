@@ -1,0 +1,10 @@
+PASS: no missing values
+PASS: 'Failure Type' contains only valid values.
+Train and test artifacts saved.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\pipelines\run_pipeline.py", line 110, in <module>
+    batch_size = config["data"]["batch_size"]
+                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'batch_size'

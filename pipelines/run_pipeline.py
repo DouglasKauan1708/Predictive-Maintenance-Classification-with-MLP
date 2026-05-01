@@ -107,7 +107,7 @@ print("Train and test artifacts saved.")
 train_loader, test_loader, scaler = prepare_dataloaders(
     train_df, test_df,
     target_col = config["data"]["target_col"],
-    batch_size = config["data"]["batch_size"]
+    batch_size = config["model"]["batch_size"]
 )
 input_dim = train_loader.dataset.tensors[0].shape[1]
 print(f" Input dimension: {input_dim} features")
