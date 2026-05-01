@@ -1,0 +1,53 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            nu0f132s9lkj8hreu8ioojfxzs0k1t3l:
+                email: douglas.dutra.136@ufrn.edu.br
+                executable: C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Scripts\python.exe
+                git:
+                    commit: 6b56087fc863ccfa6289f7a91152a3e394a64737
+                    remote: https://github.com/DouglasKauan1708/Predictive-Maintenance-Classification-with-MLP.git
+                host: DESKTOP-ROQJBBD
+                os: Windows-11-10.0.22631-SP0
+                program: -m pipelines.run_pipeline
+                python: CPython 3.14.3
+                root: C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA
+                startedAt: "2026-05-01T15:44:24.550595Z"
+                writerId: nu0f132s9lkj8hreu8ioojfxzs0k1t3l
+        m: []
+        python_version: 3.14.3
+        t:
+            "1":
+                - 1
+                - 5
+                - 53
+            "2":
+                - 1
+                - 5
+                - 53
+            "3":
+                - 13
+                - 16
+            "4": 3.14.3
+            "5": 0.25.1
+            "8":
+                - 3
+            "12": 0.25.1
+            "13": windows-amd64
+data:
+    value:
+        random_state: 42
+        raw_path: data/raw/dataset.csv
+        target_col: Failure Type
+        test_size: 0.2
+model:
+    value:
+        batch_size: 32
+        dropout: 0.2
+        early_stopping_patience: 10
+        epochs: 100
+        hidden_sizes:
+            - 64
+            - 32
+        learning_rate: 0.001

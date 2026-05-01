@@ -1,0 +1,15 @@
+{
+  "os": "Windows-11-10.0.22631-SP0",
+  "python": "CPython 3.14.3",
+  "startedAt": "2026-05-01T15:44:24.550595Z",
+  "program": "-m pipelines.run_pipeline",
+  "git": {
+    "remote": "https://github.com/DouglasKauan1708/Predictive-Maintenance-Classification-with-MLP.git",
+    "commit": "6b56087fc863ccfa6289f7a91152a3e394a64737"
+  },
+  "email": "douglas.dutra.136@ufrn.edu.br",
+  "root": "C:\\Users\\LENOVO\\Desktop\\Topicos\\projeto-topicos-IA",
+  "host": "DESKTOP-ROQJBBD",
+  "executable": "C:\\Users\\LENOVO\\Desktop\\Topicos\\projeto-topicos-IA\\.venv\\Scripts\\python.exe",
+  "writerId": "nu0f132s9lkj8hreu8ioojfxzs0k1t3l"
+}

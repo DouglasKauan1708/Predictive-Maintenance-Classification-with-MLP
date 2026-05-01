@@ -13,6 +13,6 @@ def data_downloading():
     return raw_path
 
 # Loading the dataset
-def load_data(path="data/raw/predictive_maintenance.csv"):
+def load_data(path="raw/predictive_maintenance.csv"):
     df = pd.read_csv(path)
     return df
