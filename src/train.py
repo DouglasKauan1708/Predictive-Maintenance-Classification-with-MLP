@@ -40,7 +40,11 @@ def train_model(config : dict, train_loader, test_loader, input_dim: int) -> nn.
     # --- Setup ---
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = MLP(input_dim = input_dim, hidden_sizes = config ["model"]["hidden_sizes"], dropout = config ["model"]["dropout"]).to(device)
-    criterion = nn.CrossEntropyLoss()
+    y_train = train_loader.dataset.tensors[1].cpu().numpy()
+    class_counts = np.bincount(y_train)
+    weights = 1.0 / class_counts
+    weights = torch.tensor(weights, dtype=torch.float32).to(device)
+    criterion = nn.CrossEntropyLoss(weight=weights)
     optimizer = optim.Adam(model.parameters(), lr = config["model"]["learning_rate"])
 
     # Tell W&B to track gradients and parameter histograms
@@ -90,9 +94,9 @@ def train_model(config : dict, train_loader, test_loader, input_dim: int) -> nn.
 
         val_loss /= len(test_loader.dataset)
         val_acc = accuracy_score(y_true, y_pred)
-        val_prec = precision_score(y_true, y_pred, average="weighted")
-        val_rec = recall_score(y_true, y_pred, average="weighted")
-        val_f1 = f1_score(y_true, y_pred, average="weighted")
+        val_prec = precision_score(y_true, y_pred, average="macro")
+        val_rec = recall_score(y_true, y_pred, average="macro")
+        val_f1 = f1_score(y_true, y_pred, average="macro")
         cm = confusion_matrix(y_true, y_pred)
         plt.figure(figsize=(6,5))
         sns.heatmap(cm, annot=True, fmt="d")
