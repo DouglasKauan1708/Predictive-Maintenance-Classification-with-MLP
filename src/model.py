@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch
 
 class MLP (nn.Module):
-    def __init__ (self, input_dim : int, hidden_sizes: list, output_dim: int = 1, dropout: float = 0.2):
+    def __init__ (self, input_dim : int, hidden_sizes: list, output_dim: int = 6, dropout: float = 0.2):
         super ().__init__()
         layers = []
         prev_size = input_dim

@@ -1,0 +1,41 @@
+PASS: no missing values
+PASS: 'Failure Type' contains only valid values.
+Train and test artifacts saved.
+ Input dimension: 3 features
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\pipelines\run_pipeline.py", line 116, in <module>
+    model = train_model(
+        config=config,
+    ...<2 lines>...
+        input_dim=input_dim
+        )
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\src\train.py", line 65, in train_model
+    loss = criterion(output, y_batch)
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\torch\nn\modules\loss.py", line 1394, in forward
+    return F.cross_entropy(
+           ~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<4 lines>...
+        label_smoothing=self.label_smoothing,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\torch\nn\functional.py", line 3504, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<5 lines>...
+        label_smoothing,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+IndexError: Target 2 is out of bounds.
