@@ -34,7 +34,7 @@ def prepare_dataloaders (train_df, test_df, target_col: str, batch_size: int):
 
     sampler = WeightedRandomSampler(
         weights=sample_weights,
-        num_samples=len(sample_weights),
+        num_samples=int(len(sample_weights)*0.75),
         replacement=True
     )
 
