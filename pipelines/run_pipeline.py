@@ -4,7 +4,7 @@ import torch
 import yaml , random
 import os
 from src.data_loading import load_data
-from src.data_cleaning import data_cleaning, clean_data_logging
+from src.data_cleaning import data_cleaning
 from src.data_testing import test_no_missing_values, test_target_values, compare_distributions
 from src.split_data import split_train_test
 from src.train import prepare_dataloaders, train_model

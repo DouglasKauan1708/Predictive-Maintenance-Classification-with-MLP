@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-python pipelines/run_pipeline.py
+python -m pipelines.run_pipeline
 ```
 
 ## Project Structure
