@@ -1,5 +1,5 @@
 from sklearn.preprocessing import StandardScaler
-from torch.utils.data import TensorDataset, DataLoader
+from torch.utils.data import TensorDataset, DataLoader, WeightedRandomSampler
 import numpy as np
 import torch
 import torch.nn as nn
@@ -28,8 +28,18 @@ def prepare_dataloaders (train_df, test_df, target_col: str, batch_size: int):
     train_ds = TensorDataset(torch.tensor(X_train), torch.tensor(y_train ))
     test_ds = TensorDataset(torch.tensor(X_test), torch.tensor(y_test ))
 
+    class_counts = np.bincount(y_train)
+    class_weights = 1.0 / class_counts
+    sample_weights = class_weights[y_train]
+
+    sampler = WeightedRandomSampler(
+        weights=sample_weights,
+        num_samples=len(sample_weights),
+        replacement=True
+    )
+
     # Wrap in DataLoaders
-    train_loader = DataLoader(train_ds, batch_size = batch_size, shuffle = True)
+    train_loader = DataLoader(train_ds, batch_size = batch_size, sampler=sampler)
     test_loader = DataLoader(test_ds, batch_size = batch_size, shuffle = False)
 
     return train_loader, test_loader, scaler
@@ -43,8 +53,14 @@ def train_model(config : dict, train_loader, test_loader, input_dim: int) -> nn.
     y_train = train_loader.dataset.tensors[1].cpu().numpy()
     class_counts = np.bincount(y_train)
     weights = 1.0 / class_counts
+    s_weights = weights[y_train]
+    sampler = WeightedRandomSampler(
+        weights = s_weights,
+        num_samples = len(s_weights),
+        replacement = True
+    )
     weights = torch.tensor(weights, dtype=torch.float32).to(device)
-    criterion = nn.CrossEntropyLoss(weight=weights)
+    criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr = config["model"]["learning_rate"])
 
     # Tell W&B to track gradients and parameter histograms
