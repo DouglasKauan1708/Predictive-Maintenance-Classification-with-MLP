@@ -9,12 +9,14 @@ from src.model import MLP
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
+from src.losses import FocalLoss
 
 def prepare_dataloaders (train_df, test_df, target_col: str, batch_size: int):
 
     # Separate features and labels
     X_train = train_df.drop(columns = [target_col]).values.astype(np.float32)
     y_train = train_df[target_col].values.astype(np.int64)
+    
 
     X_test = test_df.drop(columns = [target_col]).values.astype(np.float32)
     y_test = test_df[target_col].values.astype(np.int64)
@@ -24,26 +26,27 @@ def prepare_dataloaders (train_df, test_df, target_col: str, batch_size: int):
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test) # NO fit here !
 
+    class_counts = np.bincount(y_train)
+    class_weights = 1.0 / np.sqrt(class_counts)
+
+    sample_weights = class_weights[y_train]
+    sample_weights = torch.tensor(sample_weights, dtype=torch.float32)
+
+    sampler = WeightedRandomSampler(
+    weights=sample_weights,
+    num_samples=int(len(sample_weights) * 0.6),
+    replacement=True
+    )
+
     # Build TensorDatasets
     train_ds = TensorDataset(torch.tensor(X_train), torch.tensor(y_train ))
     test_ds = TensorDataset(torch.tensor(X_test), torch.tensor(y_test ))
-
-    class_counts = np.bincount(y_train)
-    class_weights = 1.0 / class_counts
-    sample_weights = class_weights[y_train]
-
-    sampler = WeightedRandomSampler(
-        weights=sample_weights,
-        num_samples=int(len(sample_weights)*0.75),
-        replacement=True
-    )
 
     # Wrap in DataLoaders
     train_loader = DataLoader(train_ds, batch_size = batch_size, sampler=sampler)
     test_loader = DataLoader(test_ds, batch_size = batch_size, shuffle = False)
 
     return train_loader, test_loader, scaler
-
 
 def train_model(config : dict, train_loader, test_loader, input_dim: int) -> nn.Module:
 
@@ -52,15 +55,7 @@ def train_model(config : dict, train_loader, test_loader, input_dim: int) -> nn.
     model = MLP(input_dim = input_dim, hidden_sizes = config ["model"]["hidden_sizes"], dropout = config ["model"]["dropout"]).to(device)
     y_train = train_loader.dataset.tensors[1].cpu().numpy()
     class_counts = np.bincount(y_train)
-    weights = 1.0 / class_counts
-    s_weights = weights[y_train]
-    sampler = WeightedRandomSampler(
-        weights = s_weights,
-        num_samples = len(s_weights),
-        replacement = True
-    )
-    weights = torch.tensor(weights, dtype=torch.float32).to(device)
-    criterion = nn.CrossEntropyLoss()
+    criterion = FocalLoss(gamma=1.5)
     optimizer = optim.Adam(model.parameters(), lr = config["model"]["learning_rate"])
 
     # Tell W&B to track gradients and parameter histograms

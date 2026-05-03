@@ -1,0 +1,34 @@
+PASS: no missing values
+PASS: 'Failure Type' contains only valid values.
+Train and test artifacts saved.
+ Input dimension: 3 features
+[34m[1mwandb[0m: [33mWARNING[0m Artifact "raw_data" already exists with the same content. No new version will be created.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\pipelines\run_pipeline.py", line 116, in <module>
+    model = train_model(
+        config=config,
+    ...<2 lines>...
+        input_dim=input_dim
+        )
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\src\train.py", line 66, in train_model
+    output = model(X_batch)      # forward pass
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1885, in _call_impl
+    return inner()
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1846, in inner
+    hook_result = hook(self, args, result)
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\wandb\integration\torch\wandb_torch.py", line 115, in <lambda>
+    lambda mod, inp, outp: parameter_log_hook(
+                           ~~~~~~~~~~~~~~~~~~^
+        mod, inp, outp, log_track_params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Lib\site-packages\wandb\integration\torch\wandb_torch.py", line 110, in parameter_log_hook
+    self.log_tensor_stats(data.cpu(), "parameters/" + prefix + name)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

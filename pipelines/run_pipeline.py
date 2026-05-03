@@ -26,7 +26,7 @@ with open("config/config.yaml") as f:
 # Initializing the Wandb 
 wandb.login(key=os.getenv("WANDB_API_KEY"))
 wandb.init(
-    project = "mlops-wandb-demo",
+    project = "predictive-maintenance-classification",
     job_type = "train",
     name = "mlp_training",
     config = config         # logs all hyperparameters automatically
