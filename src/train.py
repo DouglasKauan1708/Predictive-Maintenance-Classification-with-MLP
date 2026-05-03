@@ -1,4 +1,4 @@
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import RobustScaler
 from torch.utils.data import TensorDataset, DataLoader, WeightedRandomSampler
 import numpy as np
 import torch
@@ -22,7 +22,7 @@ def prepare_dataloaders (train_df, test_df, target_col: str, batch_size: int):
     y_test = test_df[target_col].values.astype(np.int64)
 
     # Standardize : fit on train , transform both
-    scaler = StandardScaler ()
+    scaler = RobustScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test) # NO fit here !
 
@@ -34,7 +34,7 @@ def prepare_dataloaders (train_df, test_df, target_col: str, batch_size: int):
 
     sampler = WeightedRandomSampler(
     weights=sample_weights,
-    num_samples=int(len(sample_weights) * 0.6),
+    num_samples=int(len(sample_weights) * 0.5),
     replacement=True
     )
 
@@ -54,8 +54,7 @@ def train_model(config : dict, train_loader, test_loader, input_dim: int) -> nn.
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = MLP(input_dim = input_dim, hidden_sizes = config ["model"]["hidden_sizes"], dropout = config ["model"]["dropout"]).to(device)
     y_train = train_loader.dataset.tensors[1].cpu().numpy()
-    class_counts = np.bincount(y_train)
-    criterion = FocalLoss(gamma=1.5)
+    criterion = FocalLoss(gamma=1.3)
     optimizer = optim.Adam(model.parameters(), lr = config["model"]["learning_rate"])
 
     # Tell W&B to track gradients and parameter histograms
