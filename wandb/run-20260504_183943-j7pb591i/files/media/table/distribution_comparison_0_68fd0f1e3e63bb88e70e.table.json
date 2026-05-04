@@ -1,0 +1,1 @@
+{"columns": ["feature", "test", "statistic", "p_value"], "data": [["Air temperature [K]", "KS", 0.01075, 0.9920979332733435], ["Torque [Nm]", "KS", 0.018125, 0.6651832402447956], ["Tool wear [min]", "KS", 0.018875, 0.6146327070189073]]}

@@ -1,0 +1,6 @@
+PASS: no missing values
+PASS: 'Failure Type' contains only valid values.
+Train and test artifacts saved.
+ Input dimension: 3 features
+[34m[1mwandb[0m: [33mWARNING[0m Artifact "raw_data" already exists with the same content. No new version will be created.
+Early stopping at epoch 15.Best val_loss: 0.0760

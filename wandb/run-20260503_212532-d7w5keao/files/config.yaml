@@ -1,0 +1,72 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            uyca6z2kwwp9myr9ewzynfbxyp21f4bh:
+                cpu_count: 4
+                cpu_count_logical: 8
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "238898831360"
+                        used: "221259866112"
+                email: douglas.dutra.136@ufrn.edu.br
+                executable: C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA\.venv\Scripts\python.exe
+                git:
+                    commit: 0bff130a1c70359fa6bcbce6d76fa9f91819aa64
+                    remote: https://github.com/DouglasKauan1708/Predictive-Maintenance-Classification-with-MLP.git
+                gpu: NVIDIA GeForce MX110
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Maxwell
+                      cudaCores: 256
+                      memoryTotal: "2147483648"
+                      name: NVIDIA GeForce MX110
+                      uuid: GPU-05f211a7-121c-72a6-90b1-8874ed5283db
+                host: DESKTOP-ROQJBBD
+                memory:
+                    total: "21349257216"
+                os: Windows-11-10.0.22631-SP0
+                program: -m pipelines.run_pipeline
+                python: CPython 3.14.3
+                root: C:\Users\LENOVO\Desktop\Topicos\projeto-topicos-IA
+                startedAt: "2026-05-04T00:25:32.868499Z"
+                writerId: uyca6z2kwwp9myr9ewzynfbxyp21f4bh
+        m: []
+        python_version: 3.14.3
+        t:
+            "1":
+                - 1
+                - 5
+                - 53
+            "2":
+                - 1
+                - 5
+                - 53
+            "3":
+                - 1
+                - 2
+                - 13
+                - 16
+                - 62
+            "4": 3.14.3
+            "5": 0.25.1
+            "8":
+                - 3
+            "12": 0.25.1
+            "13": windows-amd64
+data:
+    value:
+        random_state: 42
+        raw_path: data/raw/dataset.csv
+        target_col: Failure Type
+        test_size: 0.2
+model:
+    value:
+        batch_size: 32
+        dropout: 0.2
+        early_stopping_patience: 10
+        epochs: 40
+        hidden_sizes:
+            - 32
+        learning_rate: 0.001

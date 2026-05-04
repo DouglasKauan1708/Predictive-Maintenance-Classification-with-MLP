@@ -13,7 +13,7 @@ class MLP (nn.Module):
             layers.append(nn.Dropout(p = dropout))
             prev_size = hidden_size
 
-        # Output layer (no activation ; sigmoid applied in the loss )
+        # Output layer
         layers.append(nn.Linear(prev_size, output_dim))
         self.net = nn.Sequential(*layers)
 
