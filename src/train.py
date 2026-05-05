@@ -9,7 +9,6 @@ from src.model import MLP
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
-from src.losses import FocalLoss
 
 def prepare_dataloaders (train_df, test_df, target_col: str, batch_size: int):
 
@@ -54,7 +53,7 @@ def train_model(config : dict, train_loader, test_loader, input_dim: int) -> nn.
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = MLP(input_dim = input_dim, hidden_sizes = config ["model"]["hidden_sizes"], dropout = config ["model"]["dropout"]).to(device)
     y_train = train_loader.dataset.tensors[1].cpu().numpy()
-    criterion = FocalLoss(gamma=1.3)
+    criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr = config["model"]["learning_rate"])
 
     # Tell W&B to track gradients and parameter histograms

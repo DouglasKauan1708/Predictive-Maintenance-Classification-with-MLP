@@ -1,0 +1,38 @@
+{
+  "os": "Windows-11-10.0.22631-SP0",
+  "python": "CPython 3.14.3",
+  "startedAt": "2026-05-05T00:41:34.006569Z",
+  "program": "-m pipelines.run_pipeline",
+  "git": {
+    "remote": "https://github.com/DouglasKauan1708/Predictive-Maintenance-Classification-with-MLP.git",
+    "commit": "6c40fd97c299ebe9a08a1856074e6423cdf55ded"
+  },
+  "email": "douglas.dutra.136@ufrn.edu.br",
+  "root": "C:\\Users\\LENOVO\\Desktop\\Topicos\\projeto-topicos-IA",
+  "host": "DESKTOP-ROQJBBD",
+  "executable": "C:\\Users\\LENOVO\\Desktop\\Topicos\\projeto-topicos-IA\\.venv\\Scripts\\python.exe",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "gpu": "NVIDIA GeForce MX110",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "238898831360",
+      "used": "208769413120"
+    }
+  },
+  "memory": {
+    "total": "21349257216"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce MX110",
+      "memoryTotal": "2147483648",
+      "cudaCores": 256,
+      "architecture": "Maxwell",
+      "uuid": "GPU-05f211a7-121c-72a6-90b1-8874ed5283db"
+    }
+  ],
+  "cudaVersion": "13.0",
+  "writerId": "gvm52t8btc84a6mmhek5daabiulc3ibz"
+}
